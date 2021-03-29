@@ -30,20 +30,15 @@ public class TennisGame2 implements TennisGame
      * Obtiene resultado del juego
      * */
     public String getScore(){
-        String messageScore = "";
         if (isTie()){
-            messageScore = gameTie();
+            return gameTie();
         }
-        
-        if(!isTie() && isCurrentGame()){
-            messageScore = currentScore();
+        if(isAdvanceGame()){
+            return gameAdvantage();
         }
-
-        if(!isTie() && isAdvanceGame()){
-            messageScore = gameAdvantage();
+        else{
+            return currentScore();
         }
-
-        return messageScore;
     }
 
     /*
@@ -58,13 +53,6 @@ public class TennisGame2 implements TennisGame
      * */
     public String gameTie(){
         return (player1Score < 3) ? scores[player1Score] + "-All" : "Deuce";
-    }
-
-    /*
-    * Verifica si aún se está jugando
-    * */
-    public boolean isCurrentGame(){
-       return player1Score < 4 && player2Score < 4;
     }
 
     /*

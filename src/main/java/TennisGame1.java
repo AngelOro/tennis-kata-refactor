@@ -20,7 +20,7 @@ public class TennisGame1 implements TennisGame {
         if (playerName == player1Name){
             player1Score ++;
         } else {
-            player2Score++;
+            player2Score ++;
         }
     }
 
