@@ -17,10 +17,11 @@ public class TennisGame1 implements TennisGame {
     * player2Score -> Puntaje jugador 2
     * */
     public void wonPoint(String playerName) {
-        if (playerName == player1Name)
+        if (playerName == player1Name){
             player1Score ++;
-        else
-            player2Score ++;
+        } else {
+            player2Score++;
+        }
     }
 
     /*
@@ -30,11 +31,9 @@ public class TennisGame1 implements TennisGame {
         String score;
         if (isTie()) {
             score = tieGame();
-        }
-        else if (isEndGame()) {
+        } else if (isAdvanceGame()) {
             score = gameAdvantage();
-        }
-        else {
+        } else {
             score = currentScore();
         }
         return score;
@@ -54,17 +53,16 @@ public class TennisGame1 implements TennisGame {
         String score;
         if(player1Score <= 2){
             score = scores[player1Score] + "-All";
-        }
-        else {
+        } else {
             score = "Deuce";
         }
         return score;
     }
 
     /*
-    * Verifica si el juego terminó
+    * Verifica si el juego avanzó
     * */
-    public boolean isEndGame(){
+    public boolean isAdvanceGame(){
         return player1Score >= 4 || player2Score >= 4;
     }
 
@@ -82,11 +80,9 @@ public class TennisGame1 implements TennisGame {
         String score;
         if (differenceResult()==1){
             score ="Advantage player1";
-        }
-        else if (differenceResult() ==-1) {
+        } else if (differenceResult() ==-1) {
             score ="Advantage player2";
-        }
-        else {
+        } else {
             score = winner();
         }
         return score;
@@ -99,8 +95,7 @@ public class TennisGame1 implements TennisGame {
         String score;
         if (differenceResult()>=2) {
             score = "Win for player1";
-        }
-        else {
+        } else {
             score ="Win for player2";
         }
         return score;

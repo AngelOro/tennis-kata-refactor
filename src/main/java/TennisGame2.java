@@ -31,11 +31,17 @@ public class TennisGame2 implements TennisGame
      * */
     public String getScore(){
         String messageScore = "";
-        if (isTie()) messageScore = gameTie();
+        if (isTie()){
+            messageScore = gameTie();
+        }
         
-        if(!isTie() && isCurrentGame()) messageScore = currentScore();
+        if(!isTie() && isCurrentGame()){
+            messageScore = currentScore();
+        }
 
-        if(!isTie() && isEndGame()) messageScore = gameAdvantage();
+        if(!isTie() && isAdvanceGame()){
+            messageScore = gameAdvantage();
+        }
 
         return messageScore;
     }
@@ -51,14 +57,7 @@ public class TennisGame2 implements TennisGame
      * Devuelve el mensaje de empate de acuerdo al array scores[]
      * */
     public String gameTie(){
-        String score;
-        if (player1Score < 3)
-        {
-            score = scores[player1Score] + "-All";
-        }else {
-            score = "Deuce";
-        }
-        return score;
+        return (player1Score < 3) ? scores[player1Score] + "-All" : "Deuce";
     }
 
     /*
@@ -83,9 +82,9 @@ public class TennisGame2 implements TennisGame
     }
 
     /*
-     * Se obtiene la diferencia de puntos entre los jugadores
+     * Verifica si el juego avanzó
      * */
-    public boolean isEndGame(){
+    public boolean isAdvanceGame(){
         return player1Score >= 4 || player2Score >= 4;
     }
 
@@ -96,8 +95,7 @@ public class TennisGame2 implements TennisGame
         String score;
         if (differenceResult() == 1){
             score ="Advantage player1";
-        }
-        else if (differenceResult() == -1) {
+        } else if (differenceResult() == -1) {
             score ="Advantage player2";
         }else{
             score = winner();
@@ -109,14 +107,7 @@ public class TennisGame2 implements TennisGame
      * Si el juego termina con ventaja de 2 o más puntos devuelve mensaje de ganador
      * */
     public String winner(){
-        String score;
-        if (differenceResult()>=2) {
-            score = "Win for player1";
-        }
-        else {
-            score ="Win for player2";
-        }
-        return score;
+        return (differenceResult()>=2) ? "Win for player1" : "Win for player2";
     }
 
 }
